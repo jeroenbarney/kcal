@@ -1,1 +1,0 @@
-html,body{margin:0;padding:0}.wrapper{display:grid;place-items:center;min-height:100vh}.personen{display:grid;grid-template-columns:1fr 100px;gap:10px}.producten{display:grid;grid-template-columns:auto 1fr auto 1fr;align-items:center;gap:10px;margin:10px 0}.total{display:grid;grid-template-columns:1fr auto}

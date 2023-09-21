@@ -5,12 +5,14 @@
                 <span>Aantal personen</span>
                 <input type="number" v-model="personcount">
             </div>
+            <button @click="addProduct()">Toevoegen</button>
             <div class="producten">
                 <template v-for="item in products">
                     <span>Kcal per 100</span>
                     <input type="number" v-model="item.kcal">
                     <span>Hoeveelheid</span>
                     <input type="number" v-model="item.amount">
+                    ({{ calcProduct(item) }})
                 </template>
             </div>
             <div class="total">
@@ -41,7 +43,7 @@ html, body {
 
 .producten {
     display: grid;
-    grid-template-columns: auto 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto 1fr auto;
     align-items: center;
     gap: 10px;
     margin: 10px 0;
@@ -63,6 +65,20 @@ export default defineComponent({
             amount: 350,
         }]
     }),
+    methods: {
+        addProduct() {
+            this.products.push({
+                kcal: 0,
+                amount: 0
+            })
+        },
+        calcProduct(product:any) {
+            return new Intl.NumberFormat('nl-NL', {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 0,
+            }).format(product.kcal * product.amount / 100 / this.personcount);
+        }
+    },
     computed: {
         count() {
             return new Intl.NumberFormat('nl-NL', {
